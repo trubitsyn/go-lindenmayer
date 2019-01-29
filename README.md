@@ -21,7 +21,7 @@ func main() {
 		Constants: []rune{'+', '-'},
 		Axiom:     'F',
 		Rules: []Rule{
-			Rule{In: "F", Out: "F+F−F−F+F"},
+			Rule{In: "F", Out: "F+F-F-F+F"},
 		},
 	}
 	result := lindenmayer.Iterate(&sys, 5, func(i int, s string) {
