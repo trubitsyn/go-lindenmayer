@@ -7,7 +7,6 @@ package lindenmayer
 import (
 	"errors"
 	"fmt"
-	"strings"
 )
 
 type Lsystem struct {
@@ -23,15 +22,37 @@ type Rule struct {
 	Out string
 }
 
-func Iterate(lsystem *Lsystem, limit int, f func(int, string)) string {
-	c := lsystem.Axiom
+func Iterate(lsystem *Lsystem, limit int) string {
+	output := lsystem.Axiom
 	for i := 0; i < limit; i++ {
-		for _, rule := range lsystem.Rules {
-			c = strings.Replace(c, rule.In, rule.Out, -1)
-		}
-		f(i, c)
+		output = IterateOnce(lsystem, output)
 	}
-	return c
+	return output
+}
+
+func IterateOnce(lsystem *Lsystem, axiom string) string {
+	var output string
+	for _, c := range axiom {
+		tmp := string(c)
+		isConstant := false
+		for _, constant := range lsystem.Constants {
+			if tmp == string(constant) {
+				isConstant = true
+				break
+			}
+		}
+		if isConstant {
+			output += string(c)
+		} else {
+			for _, rule := range lsystem.Rules {
+				if rule.In == tmp {
+					output += rule.Out
+					break
+				}
+			}
+		}
+	}
+	return output
 }
 
 func Process(lsystem string, operations map[rune]func()) error {

@@ -24,9 +24,7 @@ func main() {
 			{"F", "F+F-F-F+F"},
 		},
 	}
-	result := lindenmayer.Iterate(&sys, 5, func(i int, s string) {
-		fmt.Println(i, s)
-	})
+	result := lindenmayer.Iterate(&sys, 5)
 	fmt.Println(result)
 	
 	operations := map[rune]func(){

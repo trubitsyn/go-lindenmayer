@@ -13,18 +13,27 @@ import (
 
 func TestIterateAlgae(t *testing.T) {
 	sys := systems.Algae()
-	result := lindenmayer.Iterate(&sys, 7, func(i int, s string) {
-	})
+	result := lindenmayer.Iterate(&sys, 7)
 	if result != "ABAABABAABAABABAABABAABAABABAABAAB" {
+		println(result)
+		t.FailNow()
+	}
+}
+
+func TestIterateOnce(t *testing.T) {
+	sys := systems.Algae()
+	result := lindenmayer.IterateOnce(&sys, sys.Axiom)
+	if result != "AB" {
+		println(result)
 		t.FailNow()
 	}
 }
 
 func TestIterateSierpinskiTriangle(t *testing.T) {
 	sys := systems.SierpinskiTriangle()
-	result := lindenmayer.Iterate(&sys, 1, func(i int, s string) {
-	})
-	if result != "F-GG+F+GG-F-GG-GG" {
+	result := lindenmayer.Iterate(&sys, 1)
+	if result != "F-G+F+G-F-GG-GG" {
+		println(result)
 		t.FailNow()
 	}
 }
@@ -80,8 +89,7 @@ func BenchmarkIterate12(b *testing.B) {
 func benchmarkIterate(limit int, b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		sys := systems.KochCurve()
-		lindenmayer.Iterate(&sys, limit, func(_ int, _ string) {
-		})
+		lindenmayer.Iterate(&sys, limit)
 	}
 }
 
