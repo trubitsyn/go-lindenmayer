@@ -4,11 +4,6 @@
 
 package lindenmayer
 
-import (
-	"errors"
-	"fmt"
-)
-
 type Lsystem struct {
 	Variables []rune
 	Constants []rune
@@ -59,7 +54,7 @@ func Process(lsystem string, operations map[rune]func()) error {
 	for _, c := range []byte(lsystem) {
 		match := operations[rune(c)]
 		if match == nil {
-			return errors.New(fmt.Sprintf("could not find matching operation for character %c", c))
+			continue
 		}
 		match()
 	}
