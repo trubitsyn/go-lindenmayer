@@ -13,20 +13,20 @@ import (
 
 func TestIterateAlgae(t *testing.T) {
 	sys := systems.Algae()
-	lindenmayer.Iterate(&sys, 7, func(i int, s string) {
-		if s != "ABAABABAABAABABAABABAABAABABAABAAB" {
-			t.FailNow()
-		}
+	result := lindenmayer.Iterate(&sys, 7, func(i int, s string) {
 	})
+	if result != "ABAABABAABAABABAABABAABAABABAABAAB" {
+		t.FailNow()
+	}
 }
 
 func TestIterateSierpinskiTriangle(t *testing.T) {
 	sys := systems.SierpinskiTriangle()
-	lindenmayer.Iterate(&sys, 1, func(i int, s string) {
-		if s != "F-GG+F+GG-F-GG-GG" {
-			t.FailNow()
-		}
+	result := lindenmayer.Iterate(&sys, 1, func(i int, s string) {
 	})
+	if result != "F-GG+F+GG-F-GG-GG" {
+		t.FailNow()
+	}
 }
 
 func BenchmarkIterate1(b *testing.B) {
