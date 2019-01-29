@@ -9,16 +9,16 @@ import (
 )
 
 func TestExample(t *testing.T) {
-	sys := LSystem {
+	sys := LSystem{
 		Variables: []rune{'F'},
 		Constants: []rune{'+', '-'},
-		Axiom: 'F',
+		Axiom:     'F',
 		Rules: []Rule{
 			Rule{In: "F", Out: "F+F−F−F+F"},
 		},
 	}
-	Iterate(sys, 1, func (s string) {
-		if (s != "F+F−F−F+F") {
+	Iterate(sys, 1, func(s string) {
+		if s != "F+F−F−F+F" {
 			t.Fail()
 		}
 	})

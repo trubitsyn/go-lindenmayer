@@ -11,13 +11,13 @@ import (
 type LSystem struct {
 	Variables []rune
 	Constants []rune
-	Axiom rune
-	Rules []Rule
-	Angle float64
+	Axiom     rune
+	Rules     []Rule
+	Angle     float64
 }
 
 type Rule struct {
-	In string
+	In  string
 	Out string
 }
 
