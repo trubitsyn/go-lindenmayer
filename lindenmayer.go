@@ -10,7 +10,7 @@ import (
 	"strings"
 )
 
-type LSystem struct {
+type Lsystem struct {
 	Variables []rune
 	Constants []rune
 	Axiom     rune
@@ -23,7 +23,7 @@ type Rule struct {
 	Out string
 }
 
-func Iterate(lsystem *LSystem, limit int, f func(int, string)) string {
+func Iterate(lsystem *Lsystem, limit int, f func(int, string)) string {
 	c := string(lsystem.Axiom)
 	for i := 0; i < limit; i++ {
 		for _, rule := range lsystem.Rules {

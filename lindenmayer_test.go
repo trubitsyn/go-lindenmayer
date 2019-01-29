@@ -10,7 +10,7 @@ import (
 )
 
 func TestIterate(t *testing.T) {
-	sys := LSystem{
+	sys := Lsystem{
 		Variables: []rune{'F'},
 		Constants: []rune{'+', '-'},
 		Axiom:     'F',
@@ -75,7 +75,7 @@ func BenchmarkIterate12(b *testing.B) {
 
 func benchmarkIterate(limit int, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sys := LSystem{
+		sys := Lsystem{
 			Variables: []rune{'F'},
 			Constants: []rune{'+', '-'},
 			Axiom:     'F',
