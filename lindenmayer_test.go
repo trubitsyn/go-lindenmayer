@@ -25,6 +25,69 @@ func TestIterate(t *testing.T) {
 	})
 }
 
+func BenchmarkIterate1(b *testing.B) {
+	benchmarkIterate(1, b)
+}
+
+func BenchmarkIterate2(b *testing.B) {
+	benchmarkIterate(2, b)
+}
+
+func BenchmarkIterate3(b *testing.B) {
+	benchmarkIterate(3, b)
+}
+
+func BenchmarkIterate4(b *testing.B) {
+	benchmarkIterate(4, b)
+}
+
+func BenchmarkIterate5(b *testing.B) {
+	benchmarkIterate(5, b)
+}
+
+func BenchmarkIterate6(b *testing.B) {
+	benchmarkIterate(6, b)
+}
+
+func BenchmarkIterate7(b *testing.B) {
+	benchmarkIterate(7, b)
+}
+
+func BenchmarkIterate8(b *testing.B) {
+	benchmarkIterate(8, b)
+}
+
+func BenchmarkIterate9(b *testing.B) {
+	benchmarkIterate(9, b)
+}
+
+func BenchmarkIterate10(b *testing.B) {
+	benchmarkIterate(10, b)
+}
+
+func BenchmarkIterate11(b *testing.B) {
+	benchmarkIterate(11, b)
+}
+
+func BenchmarkIterate12(b *testing.B) {
+	benchmarkIterate(12, b)
+}
+
+func benchmarkIterate(limit int, b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		sys := LSystem{
+			Variables: []rune{'F'},
+			Constants: []rune{'+', '-'},
+			Axiom:     'F',
+			Rules: []Rule{
+				Rule{In: "F", Out: "F+F-F-F+F"},
+			},
+		}
+		Iterate(&sys, limit, func(_ int, _ string) {
+		})
+	}
+}
+
 func TestProcess(t *testing.T) {
 	lsystem := "F+F-F-F+F"
 	operations := map[rune]func(){
