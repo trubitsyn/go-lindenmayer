@@ -35,10 +35,10 @@ func Iterate(lsystem *Lsystem, limit int, f func(int, string)) string {
 }
 
 func Process(lsystem string, operations map[rune]func()) error {
-	for pos, c := range lsystem {
-		match := operations[c]
+	for _, c := range []byte(lsystem) {
+		match := operations[rune(c)]
 		if match == nil {
-			return errors.New(fmt.Sprintf("could not find matching operation for character %c at position %d", c, pos))
+			return errors.New(fmt.Sprintf("could not find matching operation for character %c", c))
 		}
 		match()
 	}
