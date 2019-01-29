@@ -15,7 +15,7 @@ func TestIterate(t *testing.T) {
 		Constants: []rune{'+', '-'},
 		Axiom:     "F",
 		Rules: []Rule{
-			Rule{In: "F", Out: "F+F-F-F+F"},
+			{In: "F", Out: "F+F-F-F+F"},
 		},
 	}
 	Iterate(&sys, 1, func(i int, s string) {
@@ -80,7 +80,7 @@ func benchmarkIterate(limit int, b *testing.B) {
 			Constants: []rune{'+', '-'},
 			Axiom:     "F",
 			Rules: []Rule{
-				Rule{In: "F", Out: "F+F-F-F+F"},
+				{In: "F", Out: "F+F-F-F+F"},
 			},
 		}
 		Iterate(&sys, limit, func(_ int, _ string) {
