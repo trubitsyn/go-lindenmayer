@@ -48,7 +48,7 @@ func KochCurve() Lsystem {
 		Constants: []rune{'+', '-'},
 		Axiom:     "F",
 		Rules: []Rule{
-			{In: "F", Out: "F+F-F-F+F"},
+			{"F", "F+F-F-F+F"},
 		},
 	}
 }
