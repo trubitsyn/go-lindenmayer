@@ -13,7 +13,7 @@ import (
 type Lsystem struct {
 	Variables []rune
 	Constants []rune
-	Axiom     rune
+	Axiom     string
 	Rules     []Rule
 	Angle     float64
 }
@@ -24,7 +24,7 @@ type Rule struct {
 }
 
 func Iterate(lsystem *Lsystem, limit int, f func(int, string)) string {
-	c := string(lsystem.Axiom)
+	c := lsystem.Axiom
 	for i := 0; i < limit; i++ {
 		for _, rule := range lsystem.Rules {
 			c = strings.Replace(c, rule.In, rule.Out, -1)

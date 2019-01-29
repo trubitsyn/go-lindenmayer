@@ -13,7 +13,7 @@ func TestIterate(t *testing.T) {
 	sys := Lsystem{
 		Variables: []rune{'F'},
 		Constants: []rune{'+', '-'},
-		Axiom:     'F',
+		Axiom:     "F",
 		Rules: []Rule{
 			Rule{In: "F", Out: "F+F-F-F+F"},
 		},
@@ -78,7 +78,7 @@ func benchmarkIterate(limit int, b *testing.B) {
 		sys := Lsystem{
 			Variables: []rune{'F'},
 			Constants: []rune{'+', '-'},
-			Axiom:     'F',
+			Axiom:     "F",
 			Rules: []Rule{
 				Rule{In: "F", Out: "F+F-F-F+F"},
 			},
