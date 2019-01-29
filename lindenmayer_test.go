@@ -11,7 +11,16 @@ import (
 	"testing"
 )
 
-func TestIterate(t *testing.T) {
+func TestIterateAlgae(t *testing.T) {
+	sys := systems.Algae()
+	lindenmayer.Iterate(&sys, 7, func(i int, s string) {
+		if s != "ABAABABAABAABABAABABAABAABABAABAAB" {
+			t.FailNow()
+		}
+	})
+}
+
+func TestIterateSierpinskiTriangle(t *testing.T) {
 	sys := systems.SierpinskiTriangle()
 	lindenmayer.Iterate(&sys, 1, func(i int, s string) {
 		if s != "F-GG+F+GG-F-GG-GG" {
