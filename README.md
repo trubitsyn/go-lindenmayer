@@ -16,11 +16,11 @@ import (
 )
 
 func main() {
-	sys := lindenmayer.LSystem{
+	sys := lindenmayer.Lsystem{
 		Variables: []rune{'F'},
 		Constants: []rune{'+', '-'},
 		Axiom:     "F",
-		Rules: []Rule{
+		Rules: []lindenmayer.Rule{
 			{"F", "F+F-F-F+F"},
 		},
 	}
