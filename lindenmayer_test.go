@@ -2,24 +2,19 @@
 // Use of this source code is governed by the Apache 2.0
 // license that can be found in the LICENSE file.
 
-package lindenmayer
+package lindenmayer_test
 
 import (
 	"fmt"
+	"github.com/trubitsyn/go-lindenmayer"
+	"github.com/trubitsyn/go-lindenmayer/systems"
 	"testing"
 )
 
 func TestIterate(t *testing.T) {
-	sys := Lsystem{
-		Variables: []rune{'F'},
-		Constants: []rune{'+', '-'},
-		Axiom:     "F",
-		Rules: []Rule{
-			{In: "F", Out: "F+F-F-F+F"},
-		},
-	}
-	Iterate(&sys, 1, func(i int, s string) {
-		if s != "F+F-F-F+F" {
+	sys := systems.SierpinskiTriangle()
+	lindenmayer.Iterate(&sys, 1, func(i int, s string) {
+		if s != "F-GG+F+GG-F-GG-GG" {
 			t.FailNow()
 		}
 	})
@@ -75,15 +70,8 @@ func BenchmarkIterate12(b *testing.B) {
 
 func benchmarkIterate(limit int, b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		sys := Lsystem{
-			Variables: []rune{'F'},
-			Constants: []rune{'+', '-'},
-			Axiom:     "F",
-			Rules: []Rule{
-				{In: "F", Out: "F+F-F-F+F"},
-			},
-		}
-		Iterate(&sys, limit, func(_ int, _ string) {
+		sys := systems.KochCurve()
+		lindenmayer.Iterate(&sys, limit, func(_ int, _ string) {
 		})
 	}
 }
@@ -101,7 +89,7 @@ func TestProcess(t *testing.T) {
 			// turn right 90°
 		},
 	}
-	if err := Process(lsystem, operations); err != nil {
+	if err := lindenmayer.Process(lsystem, operations); err != nil {
 		fmt.Println(err)
 		t.Fail()
 	}
