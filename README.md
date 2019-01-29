@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	sys := LSystem{
+	sys := lindenmayer.LSystem{
 		Variables: []rune{'F'},
 		Constants: []rune{'+', '-'},
 		Axiom:     'F',
@@ -24,9 +24,10 @@ func main() {
 			Rule{In: "F", Out: "F+F−F−F+F"},
 		},
 	}
-	Iterate(sys, 100, func(s string) {
-		fmt.Println(s)
+	result := lindenmayer.Iterate(&sys, 5, func(i int, s string) {
+		fmt.Println(i, s)
 	})
+	fmt.Println(result)
 }
 
 </pre>

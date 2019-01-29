@@ -21,12 +21,13 @@ type Rule struct {
 	Out string
 }
 
-func Iterate(lsystem LSystem, max int, f func(string)) {
+func Iterate(lsystem *LSystem, limit int, f func(int, string)) string {
 	c := string(lsystem.Axiom)
-	for i := 0; i < max; i++ {
+	for i := 0; i < limit; i++ {
 		for _, rule := range lsystem.Rules {
 			c = strings.Replace(c, rule.In, rule.Out, -1)
 		}
-		f(c)
+		f(i, c)
 	}
+	return c
 }

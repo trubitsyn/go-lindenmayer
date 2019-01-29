@@ -17,7 +17,7 @@ func TestExample(t *testing.T) {
 			Rule{In: "F", Out: "F+F−F−F+F"},
 		},
 	}
-	Iterate(sys, 1, func(s string) {
+	Iterate(&sys, 1, func(i int, s string) {
 		if s != "F+F−F−F+F" {
 			t.Fail()
 		}
