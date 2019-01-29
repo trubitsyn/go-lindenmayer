@@ -28,8 +28,22 @@ func main() {
 		fmt.Println(i, s)
 	})
 	fmt.Println(result)
+	
+	operations := map[rune]func(){
+    	'F': func() {
+    		// draw forward
+    	},
+    	'+': func() {
+    		// turn left 90°
+    	},
+    	'-': func() {
+    		// turn right 90°
+    	},
+    }
+    if err := lindenmayer.Process(result, operations); err != nil {
+    	fmt.Println(err)
+    }
 }
-
 </pre>
 
 ## Testing

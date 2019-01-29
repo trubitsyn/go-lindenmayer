@@ -5,6 +5,8 @@
 package lindenmayer
 
 import (
+	"errors"
+	"fmt"
 	"strings"
 )
 
@@ -30,4 +32,15 @@ func Iterate(lsystem *LSystem, limit int, f func(int, string)) string {
 		f(i, c)
 	}
 	return c
+}
+
+func Process(lsystem string, operations map[rune]func()) error {
+	for pos, c := range lsystem {
+		match := operations[c]
+		if match == nil {
+			return errors.New(fmt.Sprintf("could not find matching operation for character %c at position %d", c, pos))
+		}
+		match()
+	}
+	return nil
 }
