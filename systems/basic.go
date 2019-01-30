@@ -100,3 +100,15 @@ func FractalPlant() Lsystem {
 		},
 	}
 }
+
+func HilbertCurve() Lsystem {
+	return Lsystem{
+		Variables: []rune{'A', 'B'},
+		Constants: []rune{'F', '+', '-'},
+		Axiom:     "A",
+		Rules: []Rule{
+			{"A", "BF+AFA+FB-"},
+			{"B", "AF-BFB-FA+"},
+		},
+	}
+}
