@@ -112,3 +112,15 @@ func HilbertCurve() Lsystem {
 		},
 	}
 }
+
+func MooreCurve() Lsystem {
+	return Lsystem{
+		Variables: []rune{'L', 'R'},
+		Constants: []rune{'F', '+', '-'},
+		Axiom:     "LFL+F+LFL",
+		Rules: []Rule{
+			{"L", "-RF+LFL+FR-"},
+			{"R", "+LF-RFR-FL+"},
+		},
+	}
+}
